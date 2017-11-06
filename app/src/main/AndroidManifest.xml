@@ -23,7 +23,12 @@
         <activity
             android:name=".AdminActivity.AdminHomeActivity"
             android:label="@string/title_activity_admin_home" />
-        <activity android:name=".AdminActivity.AddNewParkingArea"></activity>
+        <activity android:name=".AdminActivity.AddNewParkingArea" />
+        <activity android:name=".AdminActivity.AdminEditParkingArea" />
+        <activity android:name=".Activity.SignUpActivity" />
+        <activity android:name=".UserActivites.BookParkingActivity" />
+        <activity android:name=".UserActivites.BookingValidation" />
+        <activity android:name=".Activity.PaymentActivity"></activity>
     </application>
 
 </manifest>
