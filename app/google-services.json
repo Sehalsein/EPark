@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "848969147293",
+    "firebase_url": "https://epark-1b270.firebaseio.com",
+    "project_id": "epark-1b270",
+    "storage_bucket": "epark-1b270.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:848969147293:android:1206052dad38882d",
+        "android_client_info": {
+          "package_name": "com.sehalsein.e_park"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "848969147293-59pteuv4pdv3g2je40bh70i8od1u5hq1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sehalsein.e_park",
+            "certificate_hash": "b32b424a57028147c15ab1a9e0db45f4ccb33eed"
+          }
+        },
+        {
+          "client_id": "848969147293-fclmg85b7odjihgh0as91q761gg5gutb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuIJNq8EFUKQMkk6D8nBxrkx4-CDtPJx4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "848969147293-fclmg85b7odjihgh0as91q761gg5gutb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
