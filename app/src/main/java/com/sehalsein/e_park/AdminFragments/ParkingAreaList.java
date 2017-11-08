@@ -42,7 +42,6 @@ public class ParkingAreaList extends Fragment implements TextWatcher {
     private String NODE = null;
     private EditText searchBar;
 
-    private String jamathId;
     //private GeometricProgressView geometricProgressView;
 
     private List<ParkingAreaDetail> parkingAreaDetailList =  new ArrayList<>();
@@ -87,6 +86,7 @@ public class ParkingAreaList extends Fragment implements TextWatcher {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                parkingAreaDetailList.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     parkingAreaDetailList.add(snapshot.getValue(ParkingAreaDetail.class));
                 }
@@ -129,6 +129,7 @@ public class ParkingAreaList extends Fragment implements TextWatcher {
 
         List<ParkingAreaDetail> memeberListToReturn =  new ArrayList<>();
 
+        filteredparkingAreaDetailList = parkingAreaDetailList;
         for(ParkingAreaDetail memeber: filteredparkingAreaDetailList){
             if(memeber.getAreaName().toLowerCase().contains(searchName)
                     || memeber.getParkingName().toLowerCase().contains(searchName)
@@ -136,7 +137,7 @@ public class ParkingAreaList extends Fragment implements TextWatcher {
                 memeberListToReturn.add(memeber);
             }
         }
-        filteredparkingAreaDetailList = memeberListToReturn;
+        //filteredparkingAreaDetailList = memeberListToReturn;
 //        if(searchName.equals(" ")){
 //            filteredparkingAreaDetailList = parkingAreaDetailList;
 //        }

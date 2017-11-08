@@ -41,6 +41,7 @@
                     android:textSize="@dimen/agents_list_agent_phone_number_text_size" />
 
                 <LinearLayout
+                    android:paddingTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -51,13 +52,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:src="@drawable/ic_bike_black"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:background="#fff"/>
 
                         <TextView
-                            android:paddingLeft="10dp"
-
+                            android:paddingLeft="5dp"
+                            android:textStyle="bold"
                             android:id="@+id/bike_fare_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -71,13 +73,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:src="@drawable/ic_car_black"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:background="#fff"/>
 
                         <TextView
-                            android:paddingLeft="10dp"
-
+                            android:paddingLeft="5dp"
+                            android:textStyle="bold"
                             android:id="@+id/car_fare_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,13 +95,14 @@
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:src="@drawable/ic_bus_black"
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:background="#fff"/>
 
                         <TextView
-                            android:paddingLeft="20dp"
-
+                            android:paddingLeft="5dp"
+                            android:textStyle="bold"
                             android:id="@+id/bus_fare_text_view"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

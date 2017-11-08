@@ -28,7 +28,17 @@
         <activity android:name=".Activity.SignUpActivity" />
         <activity android:name=".UserActivites.BookParkingActivity" />
         <activity android:name=".UserActivites.BookingValidation" />
-        <activity android:name=".Activity.PaymentActivity"></activity>
+        <activity android:name=".Activity.PaymentActivity" />
+        <activity
+            android:name="com.cooltechworks.creditcarddesign.CardEditActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".AdminActivity.AdminNewBookingActivity" />
+        <activity android:name=".AdminActivity.ViewBookingActivity" />
+        <activity android:name=".UserActivites.UserPreviousBookingActivity" />
+        <activity
+            android:name=".UserActivites.UserAddNewCard"
+            android:label="@string/title_activity_user_add_new_card" />
+        <activity android:name=".Miscl.QRTest"></activity>
     </application>
 
 </manifest>

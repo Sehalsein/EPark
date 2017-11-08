@@ -14,6 +14,7 @@ import com.github.rubensousa.bottomsheetbuilder.BottomSheetBuilder;
 import com.github.rubensousa.bottomsheetbuilder.BottomSheetMenuDialog;
 import com.github.rubensousa.bottomsheetbuilder.adapter.BottomSheetItemClickListener;
 import com.sehalsein.e_park.AdminActivity.AdminEditParkingArea;
+import com.sehalsein.e_park.AdminActivity.ViewBookingActivity;
 import com.sehalsein.e_park.Model.ParkingAreaDetail;
 import com.sehalsein.e_park.Model.UserData;
 import com.sehalsein.e_park.R;
@@ -69,6 +70,7 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
                                         editArea(detail);
                                         break;
                                     case R.id.view_area:
+                                        viewBooking(detail);
                                         makeToast("View");
                                         break;
                                     case R.id.delete_area:
@@ -83,6 +85,12 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
         });
 
 
+    }
+
+    private void viewBooking(ParkingAreaDetail data) {
+        Intent intent = new Intent(context, ViewBookingActivity.class);
+        UserData.parkingAreaDetail = data;
+        context.startActivity(intent);
     }
 
     private void editArea(ParkingAreaDetail data) {

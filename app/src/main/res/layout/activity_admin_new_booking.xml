@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.sehalsein.e_park.UserActivites.BookParkingActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select the type of vehicle"
+            android:layout_marginTop="20dp"
+            android:padding="8dp"
+            android:textSize="20sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/bike_type_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@drawable/ic_bike_grey" />
+
+            <ImageView
+                android:id="@+id/car_type_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+
+                android:background="@drawable/ic_car_grey" />
+
+            <ImageView
+                android:id="@+id/bus_type_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:scaleType="fitCenter"
+                android:background="@drawable/ic_bus_grey" />
+        </LinearLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/name_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/email_id_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Email Id"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/mobile_no_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile no"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="16dp">
+
+            <EditText
+                android:id="@+id/vehicle_reg_no_edit_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Vehicle Reg No"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="Book"
+            android:textColor="#fff"
+            android:onClick="bookSlot"/>
+
+    </LinearLayout>
+
+
+</ScrollView>

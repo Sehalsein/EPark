@@ -13,8 +13,18 @@ public class BookingDetail {
     private String toTime;
     private String registrationNo;
     private String parkingNumber;
+    private UserDetail userDetail;
 
     public BookingDetail() {
+    }
+
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
     }
 
     public String getId() {

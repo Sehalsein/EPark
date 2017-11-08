@@ -4,4 +4,15 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="greyedOut">#6b6b6b</color>
+
+    <color name="light_gray">#F0F5F5</color>
+    <color name="translucent_white">#80FFFFFF</color>
+    <color name="dark_gray">#243037</color>
+
+    <color name="light_blue">#59AAFF</color>
+    <color name="blue">#2C7DE3</color>
+    <color name="dark_blue">#1C6AC9</color>
+
+    <color name="mdtp_accent_color">#009688</color>
+    <color name="mdtp_accent_color_dark">#00796b</color>
 </resources>

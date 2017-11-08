@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.sehalsein.e_park.AdminFragments.AdminSettingsFragment;
 import com.sehalsein.e_park.AdminFragments.ParkingAreaList;
 import com.sehalsein.e_park.R;
 
@@ -38,11 +39,11 @@ public class AdminHomeActivity extends AppCompatActivity {
                     bottomTabIndexNo = 1;
                     setupActionBar(getNavTitle(bottomTabIndexNo));
                     return true;
-                case R.id.navigation_notifications:
-                    changeFragment(1);
-                    bottomTabIndexNo = 1;
-                    setupActionBar(getNavTitle(bottomTabIndexNo));
-                    return true;
+//                case R.id.navigation_notifications:
+//                    changeFragment(1);
+//                    bottomTabIndexNo = 1;
+//                    setupActionBar(getNavTitle(bottomTabIndexNo));
+//                    return true;
             }
             return false;
         }
@@ -90,7 +91,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         if (position == 0) {
             newFragment = new ParkingAreaList();
         } else if (position == 1) {
-            newFragment = new AppCompatDialogFragment();
+            newFragment = new AdminSettingsFragment();
         }
 
         FragmentManager fragmentManager = getSupportFragmentManager();

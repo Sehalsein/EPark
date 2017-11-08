@@ -42,7 +42,11 @@ public class AdminEditParkingArea extends AppCompatActivity {
         setContentView(R.layout.activity_admin_edit_parking_area);
 
         parkingAreaDetail = UserData.parkingAreaDetail;
+
+        //makeToast(parkingAreaDetail.getId());
+
         key = parkingAreaDetail.getId();
+        //makeToast(key);
         parkingNameEditText = findViewById(R.id.parking_name_edit_text);
         areaNameEditText = findViewById(R.id.area_name_edit_text);
         bikeCapacityEditText = findViewById(R.id.bike_capacity_edit_text);
@@ -90,8 +94,9 @@ public class AdminEditParkingArea extends AppCompatActivity {
     }
 
     private void updateDatabse() {
-
+        //makeToast(key);
         mRef.child(key).setValue(parkingAreaDetail);
+        makeToast("Parking updated");
         this.finish();
     }
 

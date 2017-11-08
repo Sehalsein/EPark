@@ -1,7 +1,7 @@
 package com.sehalsein.e_park.Model;
 
 /**
- * Created by sehalsein on 05/11/17.
+ * Created by sehalsein on 08/11/17.
  */
 
 public class CarDetail {
@@ -44,3 +44,4 @@ public class CarDetail {
         this.additionalFare = additionalFare;
     }
 }
+

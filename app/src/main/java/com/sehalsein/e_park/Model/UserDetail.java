@@ -14,6 +14,7 @@ public class UserDetail {
     private String phoneNumber;
     private String email;
     private String password;
+    private String type;
 
 
     public UserDetail() {
@@ -24,6 +25,14 @@ public class UserDetail {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getId() {

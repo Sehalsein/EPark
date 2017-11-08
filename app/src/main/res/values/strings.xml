@@ -10,5 +10,16 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
+    <string name="next">NEXT</string>
+    <string name="previous">PREVIOUS</string>
+    <string name="done">DONE</string>
+    <string name="title_activity_main">CreditCardView Sample</string>
+    <integer name="card_name_len">22</integer>
+
     <string name="firebase_databse_node_parking">parking</string>
+    <string name="firebase_databse_node_user_detail">user_detail</string>
+    <string name="firebase_databse_node_booking">booking_detail</string>
+    <string name="firebase_databse_node_user_booking">user_booking_detail</string>
+    <string name="firebase_databse_node_user_card">user_card_detail</string>
+    <string name="title_activity_user_add_new_card">UserAddNewCard</string>
 </resources>

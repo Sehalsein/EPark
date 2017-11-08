@@ -41,11 +41,11 @@ public class UserHomeActivity extends AppCompatActivity {
                     bottomTabIndexNo = 1;
                     setupActionBar(getNavTitle(bottomTabIndexNo));
                     return true;
-                case R.id.navigation_notifications:
-                    changeFragment(1);
-                    bottomTabIndexNo = 1;
-                    setupActionBar(getNavTitle(bottomTabIndexNo));
-                    return true;
+//                case R.id.navigation_notifications:
+//                    changeFragment(1);
+//                    bottomTabIndexNo = 1;
+//                    setupActionBar(getNavTitle(bottomTabIndexNo));
+//                    return true;
             }
             return false;
         }
