@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sehalsein.e_park">
+    package="com.ayana.e_park">
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -9,36 +10,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name="com.ayana.e_park.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name="com.ayana.e_park.Activity.LoginActivity" />
         <activity
-            android:name=".UserActivites.UserHomeActivity"
+            android:name="com.ayana.e_park.UserActivites.UserHomeActivity"
             android:label="@string/title_activity_user_home" />
         <activity
-            android:name=".AdminActivity.AdminHomeActivity"
+            android:name="com.ayana.e_park.AdminActivity.AdminHomeActivity"
             android:label="@string/title_activity_admin_home" />
-        <activity android:name=".AdminActivity.AddNewParkingArea" />
-        <activity android:name=".AdminActivity.AdminEditParkingArea" />
-        <activity android:name=".Activity.SignUpActivity" />
-        <activity android:name=".UserActivites.BookParkingActivity" />
-        <activity android:name=".UserActivites.BookingValidation" />
-        <activity android:name=".Activity.PaymentActivity" />
+        <activity android:name="com.ayana.e_park.AdminActivity.AddNewParkingArea" />
+        <activity android:name="com.ayana.e_park.AdminActivity.AdminEditParkingArea" />
+        <activity android:name="com.ayana.e_park.Activity.SignUpActivity" />
+        <activity android:name="com.ayana.e_park.UserActivites.BookParkingActivity" />
+        <activity android:name="com.ayana.e_park.UserActivites.BookingValidation" />
+        <activity android:name="com.ayana.e_park.Activity.PaymentActivity" />
         <activity
             android:name="com.cooltechworks.creditcarddesign.CardEditActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".AdminActivity.AdminNewBookingActivity" />
-        <activity android:name=".AdminActivity.ViewBookingActivity" />
-        <activity android:name=".UserActivites.UserPreviousBookingActivity" />
+        <activity android:name="com.ayana.e_park.AdminActivity.AdminNewBookingActivity" />
+        <activity android:name="com.ayana.e_park.AdminActivity.ViewBookingActivity" />
+        <activity android:name="com.ayana.e_park.UserActivites.UserPreviousBookingActivity" />
         <activity
-            android:name=".UserActivites.UserAddNewCard"
+            android:name="com.ayana.e_park.UserActivites.UserAddNewCard"
             android:label="@string/title_activity_user_add_new_card" />
-        <activity android:name=".Miscl.QRTest"></activity>
+        <activity android:name="com.ayana.e_park.Miscl.QRTest" />
+        <activity android:name="com.ayana.e_park.UserActivites.UserPaymentGateway"></activity>
     </application>
 
 </manifest>

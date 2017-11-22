@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.sehalsein.e_park.Activity.MainActivity">
+    tools:context="com.ayana.e_park.Activity.MainActivity">
 
     <Button
         android:id="@+id/button"
