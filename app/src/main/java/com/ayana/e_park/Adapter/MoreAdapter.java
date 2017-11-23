@@ -90,7 +90,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         userQR();
                         break;
                     case "userPay" :
-                        userPayment();
+                        //userPayment();
                         break;
                     default:
                         makeToast("Comming Soon");
@@ -102,7 +102,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     private void userPayment(){
-        makeToast("jhg");
+       // makeToast("jhg");
         context.startActivity(new Intent(context, UserPaymentGateway.class));
     }
 

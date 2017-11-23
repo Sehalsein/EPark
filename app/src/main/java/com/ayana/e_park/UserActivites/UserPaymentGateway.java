@@ -19,7 +19,9 @@ import com.ayana.e_park.Model.BookingDetail;
 import com.ayana.e_park.Model.UserData;
 import com.ayana.e_park.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserPaymentGateway extends AppCompatActivity {
@@ -30,6 +32,7 @@ public class UserPaymentGateway extends AppCompatActivity {
     private ImageView typeImage;
     private TextView carRegnoTextView;
     private TextView fromTimeTextView;
+    private TextView toTimeTextView;
     private TextView addressTextView;
     private TextView nameTextView;
     private Button payButton;
@@ -51,27 +54,37 @@ public class UserPaymentGateway extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_payment_gateway);
 
-//        bookingDetailList = UserData.bookingDetailList;
-//        bookingDetail = UserData.bookingDetail;
-//       // bookingDetail.setUserDetail(UserData.userDetail);
-//        parkingNumber = findViewById(R.id.parking_number_text_view);
-//        fromTimeTextView = findViewById(R.id.from_time_text_view);
-//        addressTextView = findViewById(R.id.address_text_view);
-//        nameTextView = findViewById(R.id.name_text_view);
-//        carRegnoTextView = findViewById(R.id.car_reg_text_view);
-//        typeImage = findViewById(R.id.type_image_view);
-//        payButton = findViewById(R.id.pay_button);
-//
-//
-//        setUI();
-//
-//        carRegnoTextView.setText(bookingDetail.getRegistrationNo());
+        //makeToast("SAD");
+        //bookingDetailList = UserData.bookingDetailList;
+        bookingDetail = UserData.bookingDetail;
+       // bookingDetail.setUserDetail(UserData.userDetail);
+        parkingNumber = findViewById(R.id.parking_number_text_view);
+        fromTimeTextView = findViewById(R.id.from_time_text_view);
+        toTimeTextView = findViewById(R.id.to_time_text_view);
+        addressTextView = findViewById(R.id.address_text_view);
+        nameTextView = findViewById(R.id.name_text_view);
+        carRegnoTextView = findViewById(R.id.car_reg_text_view);
+        typeImage = findViewById(R.id.type_image_view);
+        payButton = findViewById(R.id.pay_button);
 
-//        mDatabase = FirebaseDatabase.getInstance();
-//        NODE = getResources().getString(R.string.firebase_databse_node_booking);
-//        USER_NODE = getResources().getString(R.string.firebase_databse_node_user_booking);
-//        mRef = mDatabase.getReference(NODE);
-//        mUserRef = mDatabase.getReference(USER_NODE);
+
+        setUI();
+
+
+        if(bookingDetail.isPaidStatus()){
+            paidStatus = true;
+        }else{
+            paidStatus = false;
+        }
+
+        //makeToast(paidStatus+"");
+        carRegnoTextView.setText(bookingDetail.getRegistrationNo());
+        parkingNumber.setText(bookingDetail.getParkingNumber());
+        mDatabase = FirebaseDatabase.getInstance();
+        NODE = getResources().getString(R.string.firebase_databse_node_booking);
+       USER_NODE = getResources().getString(R.string.firebase_databse_node_user_booking);
+        mRef = mDatabase.getReference(NODE);
+        mUserRef = mDatabase.getReference(USER_NODE);
     }
 
 
@@ -83,10 +96,33 @@ public class UserPaymentGateway extends AppCompatActivity {
         } else {
             typeImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_bus_black));
         }
-        payButton.setText("Pay");
+
+        payButton.setText("Done");
+        if(bookingDetail.getToTime().equals("00:00")) {
+            bookingDetail.setToTime(getCurrentTimeStamp());
+            payButton.setText("Pay");
+        }
+
         nameTextView.setText(UserData.userDetail.getName());
         addressTextView.setText("ASD");
         fromTimeTextView.setText(bookingDetail.getFromTime());
+        toTimeTextView.setText(bookingDetail.getToTime());
+
+
+    }
+
+    public static String getCurrentTimeStamp() {
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
+        }
     }
 
 
@@ -96,6 +132,8 @@ public class UserPaymentGateway extends AppCompatActivity {
             final int GET_NEW_CARD = 2;
             Intent intent = new Intent(UserPaymentGateway.this, CardEditActivity.class);
             startActivityForResult(intent, GET_NEW_CARD);
+        }else{
+            this.finish();
         }
 
 
@@ -114,7 +152,9 @@ public class UserPaymentGateway extends AppCompatActivity {
             makeToast("Payment Complete");
 
             payButton.setText("Done");
-
+            bookingDetail.setPaidStatus(true);
+            mRef.child(bookingDetail.getId()).setValue(bookingDetail);
+            mUserRef.child(UserData.userDetail.getId()).child(bookingDetail.getId()).setValue(bookingDetail);
             paidStatus = true;
 
         }

@@ -66,7 +66,7 @@ public class ViewBookingActivity extends AppCompatActivity implements TextWatche
                 }
                 filteredparkingAreaDetailList = bookingDetailList;
 
-                recyclerView.setAdapter(new AdminBookedListAdapter(ViewBookingActivity.this, bookingDetailList,"admin"));
+                recyclerView.setAdapter(new AdminBookedListAdapter(ViewBookingActivity.this, bookingDetailList,"admin",memebersReference));
                 //geometricProgressView.setVisibility(View.INVISIBLE);
                 searchBar.addTextChangedListener(ViewBookingActivity.this);
             }
@@ -111,6 +111,6 @@ public class ViewBookingActivity extends AppCompatActivity implements TextWatche
 //        if(searchName.equals(" ")){
 //            filteredparkingAreaDetailList = parkingAreaDetailList;
 //        }
-        recyclerView.setAdapter(new AdminBookedListAdapter(ViewBookingActivity.this, memeberListToReturn,"admin"));
+        recyclerView.setAdapter(new AdminBookedListAdapter(ViewBookingActivity.this, memeberListToReturn,"admin",memebersReference));
     }
 }

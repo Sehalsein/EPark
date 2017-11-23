@@ -14,10 +14,19 @@ public class BookingDetail {
     private String registrationNo;
     private String parkingNumber;
     private UserDetail userDetail;
+    private boolean paidStatus;
 
     public BookingDetail() {
     }
 
+
+    public boolean isPaidStatus() {
+        return paidStatus;
+    }
+
+    public void setPaidStatus(boolean paidStatus) {
+        this.paidStatus = paidStatus;
+    }
 
     public UserDetail getUserDetail() {
         return userDetail;

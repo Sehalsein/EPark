@@ -50,25 +50,21 @@ public class AdminSettingsFragment extends Fragment {
 
             String title[] = {
                     "New Booking",
-                    "QR",
                     "Logout",
             };
 
             String description[] = {
                     "Make a booking",
                     "",
-                    "",
             };
 
             String code[] = {
                     "addminNewBooking",
-                    "adminQR",
                     "Logout",
             };
 
             int icons[] = {
                     R.drawable.ic_playlist_add_black_24dp,
-                    R.drawable.ic_bookmark_black_24dp,
                     R.drawable.ic_exit_to_app_black_24dp,
             };
 

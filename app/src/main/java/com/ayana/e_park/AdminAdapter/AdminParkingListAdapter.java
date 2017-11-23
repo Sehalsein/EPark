@@ -18,6 +18,8 @@ import com.ayana.e_park.AdminActivity.ViewBookingActivity;
 import com.ayana.e_park.Model.ParkingAreaDetail;
 import com.ayana.e_park.Model.UserData;
 import com.ayana.e_park.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +32,15 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
 
     private Context context;
     private List<ParkingAreaDetail> parkingAreaDetailList = new ArrayList<>();
+    private FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference memebersReference ;
+    private String NODE = null;
 
     public AdminParkingListAdapter(Context context, List<ParkingAreaDetail> parkingAreaDetailList) {
         this.context = context;
         this.parkingAreaDetailList = parkingAreaDetailList;
+        NODE = context.getResources().getString(R.string.firebase_databse_node_parking);
+        memebersReference = mDatabase.getReference(NODE);
     }
 
     @Override
@@ -74,6 +81,7 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
                                         makeToast("View");
                                         break;
                                     case R.id.delete_area:
+                                        deleteBooking(detail);
                                         makeToast("Delete");
                                         break;
                                 }
@@ -91,6 +99,10 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
         Intent intent = new Intent(context, ViewBookingActivity.class);
         UserData.parkingAreaDetail = data;
         context.startActivity(intent);
+    }
+
+    private void deleteBooking(ParkingAreaDetail data) {
+        memebersReference.child(data.getId()).setValue(null);
     }
 
     private void editArea(ParkingAreaDetail data) {

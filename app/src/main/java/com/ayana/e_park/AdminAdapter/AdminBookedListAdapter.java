@@ -2,6 +2,8 @@ package com.ayana.e_park.AdminAdapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.StackingBehavior;
+import com.ayana.e_park.UserActivites.UserPaymentGateway;
 import com.google.firebase.database.DatabaseReference;
 import com.ayana.e_park.Miscl.QRTest;
 import com.ayana.e_park.Model.BookingDetail;
@@ -67,15 +70,40 @@ public class AdminBookedListAdapter extends RecyclerView.Adapter<AdminBookedList
 
         holder.parkingNumber.setText(detail.getParkingNumber());
         holder.fromTime.setText(detail.getFromTime());
-        holder.toTime.setText("-");
+
+        holder.toTime.setText(detail.getToTime());
+        if(detail.getToTime().equals("00:00")) {
+            holder.toTime.setText("-");
+        }
         holder.registrationNo.setText(detail.getRegistrationNo());
 
+        if(detail.isPaidStatus()){
+            holder.typeImage.setColorFilter(Color.argb(255, 233, 187, 0)) ;
+        }else{
+            holder.typeImage.setColorFilter(Color.argb(0, 0, 0, 0));
+        }
+
+
         if (detail.getType().equals("bike")) {
-            holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bike_black));
+            if(detail.isPaidStatus()){
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bike_gold));
+            }else{
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bike_black));
+            }
+
         } else if (detail.getType().equals("car")) {
-            holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_car_black));
+            if(detail.isPaidStatus()){
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_car_gold));
+            }else{
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_car_black));
+            }
+
         } else {
-            holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bus_black));
+            if(detail.isPaidStatus()){
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bus_gold));
+            }else{
+                holder.typeImage.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_bus_black));
+            }
         }
 
         if(type!=null) {
@@ -87,8 +115,38 @@ public class AdminBookedListAdapter extends RecyclerView.Adapter<AdminBookedList
                         userQR();
                     }
                 });
+
+                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View view) {
+
+                        new MaterialDialog.Builder(context)
+                                .title("Sure you want to cancel?")
+                                .content("We have already blocked the parking slot for you. You will be allotted different slots if you go back " +
+                                        "\n\nNote : Previously allotted parking would be available after a while")
+                                .positiveText("Dismiss")
+                                .negativeText("Cancel")
+                                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                    @Override
+                                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                        mRef.child(detail.getId()).setValue(null);
+                                        makeToast("ASD");
+                                        return;
+                                    }
+                                })
+                                .stackingBehavior(StackingBehavior.ADAPTIVE)
+                                .show();
+                        return true;
+                    }
+                });
             }else {
-                makeToast("hjgj");
+                //makeToast("hjgj");
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        userPayment(detail);
+                    }
+                });
                 holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
@@ -115,6 +173,15 @@ public class AdminBookedListAdapter extends RecyclerView.Adapter<AdminBookedList
             }
         }
     }
+
+    private void userPayment(BookingDetail data){
+
+        UserData.bookingDetail = data;
+
+        // makeToast("jhg");
+        context.startActivity(new Intent(context, UserPaymentGateway.class));
+    }
+
 
     private void userQR(){
         context.startActivity(new Intent(context, QRTest.class));

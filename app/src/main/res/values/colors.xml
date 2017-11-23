@@ -7,6 +7,7 @@
 
     <color name="light_gray">#F0F5F5</color>
     <color name="translucent_white">#80FFFFFF</color>
+    <color name="transslucent_white">#e9bb00</color>
     <color name="dark_gray">#243037</color>
 
     <color name="light_blue">#59AAFF</color>
