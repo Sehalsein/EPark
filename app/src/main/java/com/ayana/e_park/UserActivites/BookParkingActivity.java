@@ -129,7 +129,17 @@ public class BookParkingActivity extends AppCompatActivity implements TimePicker
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
                                           int minute) {
-                        fromTimeEditText.setText(hourOfDay + ":" + minute);
+
+                        Calendar rightNow = Calendar.getInstance();
+                        int currentHour = rightNow.get(Calendar.HOUR_OF_DAY);
+                        int currentMinute = rightNow.get(Calendar.MINUTE);
+                        int currentTime = currentHour*1000 + currentMinute;
+                        int selectedTime = hourOfDay*1000 + minute;
+                        if(selectedTime>currentTime ) {
+                            fromTimeEditText.setText(hourOfDay + ":" + minute);
+                        }else {
+                            makeToast("Please select a valid time");
+                        }
                     }
                 }, mHour, mMinute, false);
         timePickerDialog.show();

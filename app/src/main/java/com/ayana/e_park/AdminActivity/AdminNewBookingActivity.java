@@ -122,6 +122,7 @@ public class AdminNewBookingActivity extends AppCompatActivity {
         String email = "";
         String mobile = "";
 
+
         if (isEmpty(vehicleRegNoEditText)) {
             vehicleRegNoEditText.setError("Enter Vehicle Registration No");
             registrationCheck = false;
