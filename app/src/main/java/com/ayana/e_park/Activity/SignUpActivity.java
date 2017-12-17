@@ -22,6 +22,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.ayana.e_park.Model.UserDetail;
 import com.ayana.e_park.R;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class SignUpActivity extends AppCompatActivity {
 
     private EditText fullNameEditText;
@@ -49,7 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance();
-        NODE = getResources().getString(R.string.firebase_databse_node_parking);
+        NODE = getResources().getString(R.string.firebase_databse_node_user_detail);
         mRef = mDatabase.getReference(NODE);
     }
 
@@ -100,6 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
                             updateUserDetail(user);
                             String key = user.getUid();
                             userDetail.setId(key);
+                            userDetail.setType("user");
                             mRef.child(key).setValue(userDetail, new DatabaseReference.CompletionListener() {
                                 @Override
                                 public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
@@ -183,12 +187,18 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         if (isEmpty(emailIdEditText)) {
-            emailIdEditText.setError("Enter Email Id");
+            emailIdEditText.setError("Enter email Id");
             emailIdCheck = false;
         } else {
-            emailIdCheck = true;
-            emailId = emailIdEditText.getText().toString();
+            if (isValidEmail(emailIdEditText.getText().toString())) {
+                emailIdCheck = true;
+                emailId = emailIdEditText.getText().toString();
+            } else {
+                emailIdCheck = false;
+                emailIdEditText.setError("Enter a valid email Id");
+            }
         }
+
         if (isEmpty(passwordEditText)) {
             passwordEditText.setError("Enter Bike Fare");
             passwordCheck = false;
@@ -205,4 +215,15 @@ public class SignUpActivity extends AppCompatActivity {
             return false;
         }
     }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+
 }

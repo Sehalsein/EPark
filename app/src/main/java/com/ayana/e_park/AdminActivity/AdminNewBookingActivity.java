@@ -1,16 +1,24 @@
 package com.ayana.e_park.AdminActivity;
 
+import android.content.Intent;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.ayana.e_park.Model.BookingDetail;
 import com.ayana.e_park.Model.ParkingAreaDetail;
 import com.ayana.e_park.Model.UserData;
 import com.ayana.e_park.R;
+import com.ayana.e_park.UserActivites.BookingValidation;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AdminNewBookingActivity extends AppCompatActivity {
 
@@ -94,7 +102,9 @@ public class AdminNewBookingActivity extends AppCompatActivity {
     public void bookSlot(View view) {
 
         if(validate()){
-          //  startActivity(new Intent(BookParkingActivity.this,BookingValidation.class));
+            startActivity(new Intent(AdminNewBookingActivity.this,BookingValidation.class));
+            bookingDetail.setFromTime(getCurrentTimeStamp());
+            bookingDetail.setToTime("00:00");
             UserData.bookingDetail = bookingDetail;
         }else{
             makeToast("INComplete!!");
@@ -107,7 +117,7 @@ public class AdminNewBookingActivity extends AppCompatActivity {
     }
 
     private void makeToast(String message) {
-        //Toast.makeText(BookParkingActivity.this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(AdminNewBookingActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
 
@@ -127,8 +137,16 @@ public class AdminNewBookingActivity extends AppCompatActivity {
             vehicleRegNoEditText.setError("Enter Vehicle Registration No");
             registrationCheck = false;
         } else {
-            registrationCheck = true;
-            registration = vehicleRegNoEditText.getText().toString();
+
+            if(isValidNoPlate(vehicleRegNoEditText.getText().toString())){
+                registrationCheck = true;
+                registration = vehicleRegNoEditText.getText().toString();
+            }else{
+                registrationCheck = false;
+                vehicleRegNoEditText.setError("Enter Valid Vehicle Registration No");
+            }
+//            registrationCheck = true;
+//            registration = vehicleRegNoEditText.getText().toString();
         }
 
         if (isEmpty(nameEditText)) {
@@ -143,8 +161,14 @@ public class AdminNewBookingActivity extends AppCompatActivity {
             emailIdEdotText.setError("Enter an email id");
             emailCheck = false;
         } else {
-            emailCheck = true;
-            email = emailIdEdotText.getText().toString();
+            if (isValidEmail(emailIdEdotText.getText().toString())) {
+                emailCheck = true;
+                email = emailIdEdotText.getText().toString();
+            } else {
+                emailCheck = false;
+                emailIdEdotText.setError("Enter a valid email Id");
+            }
+
         }
 
         if (isEmpty(mobileNoEditText)) {
@@ -169,6 +193,36 @@ public class AdminNewBookingActivity extends AppCompatActivity {
             return true;
         } else {
             return false;
+        }
+    }
+
+    private boolean isValidEmail(String email) {
+        String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    private boolean isValidNoPlate(String email) {
+        String EMAIL_PATTERN = "^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+    public static String getCurrentTimeStamp() {
+        try {
+
+            SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+            String currentDateTime = dateFormat.format(new Date()); // Find todays date
+
+            return currentDateTime;
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            return null;
         }
     }
 }

@@ -22,4 +22,8 @@
     <string name="firebase_databse_node_user_booking">user_booking_detail</string>
     <string name="firebase_databse_node_user_card">user_card_detail</string>
     <string name="title_activity_user_add_new_card">UserAddNewCard</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

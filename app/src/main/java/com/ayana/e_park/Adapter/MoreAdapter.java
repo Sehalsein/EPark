@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ayana.e_park.Activity.ScanActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.ayana.e_park.Activity.LoginActivity;
@@ -90,7 +91,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         userQR();
                         break;
                     case "userPay" :
-                        //userPayment();
+                        userPayment();
                         break;
                     default:
                         makeToast("Comming Soon");
@@ -103,7 +104,7 @@ public class MoreAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private void userPayment(){
        // makeToast("jhg");
-        context.startActivity(new Intent(context, UserPaymentGateway.class));
+        context.startActivity(new Intent(context, ScanActivity.class));
     }
 
     private void userPreviousBooking(){

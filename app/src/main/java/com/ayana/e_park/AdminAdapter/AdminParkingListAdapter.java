@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ayana.e_park.AdminActivity.AdminNewBookingActivity;
 import com.github.rubensousa.bottomsheetbuilder.BottomSheetBuilder;
 import com.github.rubensousa.bottomsheetbuilder.BottomSheetMenuDialog;
 import com.github.rubensousa.bottomsheetbuilder.adapter.BottomSheetItemClickListener;
@@ -84,6 +85,10 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
                                         deleteBooking(detail);
                                         makeToast("Delete");
                                         break;
+                                    case R.id.add_new_area:
+                                        newBooking(detail);
+                                        makeToast("Add New Area");
+                                        break;
                                 }
                             }
                         })
@@ -93,6 +98,12 @@ public class AdminParkingListAdapter extends RecyclerView.Adapter<AdminParkingLi
         });
 
 
+    }
+
+    private void newBooking(ParkingAreaDetail data) {
+        Intent intent = new Intent(context, AdminNewBookingActivity.class);
+        UserData.parkingAreaDetail = data;
+        context.startActivity(intent);
     }
 
     private void viewBooking(ParkingAreaDetail data) {

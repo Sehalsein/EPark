@@ -27,6 +27,8 @@ import com.ayana.e_park.R;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BookParkingActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
@@ -244,8 +246,16 @@ public class BookParkingActivity extends AppCompatActivity implements TimePicker
             vehicleRegNoEditText.setError("Enter Vehicle Registration No");
             registrationCheck = false;
         } else {
-            registrationCheck = true;
-            registration = vehicleRegNoEditText.getText().toString();
+
+
+            if(isValidNoPlate(vehicleRegNoEditText.getText().toString())){
+                registrationCheck = true;
+                registration = vehicleRegNoEditText.getText().toString();
+            }else{
+                registrationCheck = false;
+                vehicleRegNoEditText.setError("Enter Valid Vehicle Registration No");
+            }
+
         }
 
         if (isEmpty(fromTimeEditText)) {
@@ -275,6 +285,15 @@ public class BookParkingActivity extends AppCompatActivity implements TimePicker
         } else {
             return false;
         }
+    }
+
+
+    private boolean isValidNoPlate(String email) {
+        String EMAIL_PATTERN = "^[A-Z]{2}[0-9]{2}[A-Z]{2}[0-9]{4}$";
+
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 
 

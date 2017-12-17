@@ -177,7 +177,6 @@ public class AdminBookedListAdapter extends RecyclerView.Adapter<AdminBookedList
     private void userPayment(BookingDetail data){
 
         UserData.bookingDetail = data;
-
         // makeToast("jhg");
         context.startActivity(new Intent(context, UserPaymentGateway.class));
     }

@@ -13,4 +13,6 @@ public class UserData {
     public static BookingDetail bookingDetail;
     public static UserDetail userDetail;
     public static List<BookingDetail> bookingDetailList =  new ArrayList<>();
+    public static String parkingId;
+    public static String bookingId;
 }

@@ -13,11 +13,14 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.cooltechworks.creditcarddesign.CardEditActivity;
 import com.cooltechworks.creditcarddesign.CreditCardUtils;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.ayana.e_park.Model.BookingDetail;
 import com.ayana.e_park.Model.UserData;
 import com.ayana.e_park.R;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,6 +51,7 @@ public class UserPaymentGateway extends AppCompatActivity {
     private List<BookingDetail> bookingDetailList =  new ArrayList<>();
     private String parkingNo;
 
+    private String bookingID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,8 +60,15 @@ public class UserPaymentGateway extends AppCompatActivity {
 
         //makeToast("SAD");
         //bookingDetailList = UserData.bookingDetailList;
+
+        mDatabase = FirebaseDatabase.getInstance();
+        NODE = getResources().getString(R.string.firebase_databse_node_booking);
+        USER_NODE = getResources().getString(R.string.firebase_databse_node_user_booking);
+        mRef = mDatabase.getReference(NODE);
+        mUserRef = mDatabase.getReference(USER_NODE);
+
+
         bookingDetail = UserData.bookingDetail;
-       // bookingDetail.setUserDetail(UserData.userDetail);
         parkingNumber = findViewById(R.id.parking_number_text_view);
         fromTimeTextView = findViewById(R.id.from_time_text_view);
         toTimeTextView = findViewById(R.id.to_time_text_view);
@@ -67,10 +78,41 @@ public class UserPaymentGateway extends AppCompatActivity {
         typeImage = findViewById(R.id.type_image_view);
         payButton = findViewById(R.id.pay_button);
 
+        if(UserData.bookingId != null && UserData.parkingId != null){
+            bookingID = UserData.bookingId;
+            UserData.bookingId = null;
+            UserData.parkingId = null;
+            getDetail();
+            payButton.setVisibility(View.VISIBLE);
+        }else{
+            payButton.setVisibility(View.INVISIBLE);
+            setUI();
+        }
 
-        setUI();
+    }
 
 
+
+    private void getDetail(){
+        //makeToast(UserData.userDetail.getId());
+        //makeToast(bookingID);
+        mUserRef.child(UserData.userDetail.getId()).child(bookingID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                BookingDetail post = dataSnapshot.getValue(BookingDetail.class);
+                //makeToast(post.getId());
+                bookingDetail = post;
+                setUI();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setUI() {
         if(bookingDetail.isPaidStatus()){
             paidStatus = true;
         }else{
@@ -80,15 +122,7 @@ public class UserPaymentGateway extends AppCompatActivity {
         //makeToast(paidStatus+"");
         carRegnoTextView.setText(bookingDetail.getRegistrationNo());
         parkingNumber.setText(bookingDetail.getParkingNumber());
-        mDatabase = FirebaseDatabase.getInstance();
-        NODE = getResources().getString(R.string.firebase_databse_node_booking);
-       USER_NODE = getResources().getString(R.string.firebase_databse_node_user_booking);
-        mRef = mDatabase.getReference(NODE);
-        mUserRef = mDatabase.getReference(USER_NODE);
-    }
 
-
-    private void setUI() {
         if (bookingDetail.getType().equals("bike")) {
             typeImage.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_bike_black));
         } else if (bookingDetail.getType().equals("car")) {
@@ -153,7 +187,7 @@ public class UserPaymentGateway extends AppCompatActivity {
 
             payButton.setText("Done");
             bookingDetail.setPaidStatus(true);
-            mRef.child(bookingDetail.getId()).setValue(bookingDetail);
+            mRef.child(bookingDetail.getParkingId()).child(bookingDetail.getId()).setValue(bookingDetail);
             mUserRef.child(UserData.userDetail.getId()).child(bookingDetail.getId()).setValue(bookingDetail);
             paidStatus = true;
 

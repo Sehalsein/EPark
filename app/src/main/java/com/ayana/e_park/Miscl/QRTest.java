@@ -65,7 +65,7 @@ public class QRTest extends AppCompatActivity {
         }
 
         amountTextView.setText("$ " + price);
-        Bitmap myBitmap = QRCode.from(price+"").bitmap();
+        Bitmap myBitmap = QRCode.from(parkingDetail.getId()+"EPARK"+bookingDetail.getId()).bitmap();
         imgResult.setImageBitmap(myBitmap);
 
     }
