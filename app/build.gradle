@@ -48,6 +48,7 @@ dependencies {
     compile 'com.github.sharish:CreditCardView:v1.0.4'
     compile 'com.github.kenglxn.QRGen:android:2.3.0'
     compile 'me.dm7.barcodescanner:zxing:1.9.8'
+    compile 'com.github.yesidlazaro:GmailBackground:1.2.0'
 
     testCompile 'junit:junit:4.12'
 }

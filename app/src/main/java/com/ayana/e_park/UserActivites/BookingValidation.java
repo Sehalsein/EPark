@@ -16,6 +16,7 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.StackingBehavior;
 import com.cooltechworks.creditcarddesign.CreditCardUtils;
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -161,6 +162,29 @@ public class BookingValidation extends AppCompatActivity {
                             })
                             .show();
                 } else {
+
+                    BackgroundMail.newBuilder(BookingValidation.this)
+                            .withUsername("username@gmail.com")
+                            .withPassword("password12345")
+                            .withMailto("toemail@gmail.com")
+                            .withType(BackgroundMail.TYPE_PLAIN)
+                            .withSubject("Booking Confirmation")
+                            .withBody("this email is regrading your booking od parking slot "+parkingNo+".")
+                            .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
+                                @Override
+                                public void onSuccess() {
+                                    //do some magic
+                                }
+                            })
+                            .withOnFailCallback(new BackgroundMail.OnFailCallback() {
+                                @Override
+                                public void onFail() {
+                                    //do some magic
+                                }
+                            })
+                            .send();
+
+
                     new MaterialDialog.Builder(BookingValidation.this)
                             .title("Successful")
                             .content("Booking complete")
